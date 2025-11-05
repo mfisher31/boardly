@@ -8,7 +8,7 @@ const mysql = require('mysql');
 const path = require('path');
 const bodyParser= require('body-parser');
 const app = express();
-const { getHomePage} = require('./routes/index');
+const { getHomePage } = require('./routes/index');
 const game = require('./routes/game');
 const game_session = require('./routes/game_session');
 
@@ -32,9 +32,10 @@ db.connect((err) => {
 
 global.db = db;
 
-app.set('port', process.env.port || port);
+app.set('port', port);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+app.set('view cache', false);
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // If there are static files, make a public directory
