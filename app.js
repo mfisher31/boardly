@@ -10,7 +10,7 @@ const bodyParser= require('body-parser');
 const app = express();
 const { getHomePage } = require('./routes/index');
 const game = require('./routes/game');
-const game_session = require('./routes/game_session');
+const game_session = require('./routes/game-session');
 
 // Read port from the environment or default to 3000
 const port = process.env.PORT || 3000;
