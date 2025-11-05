@@ -26,12 +26,14 @@ module.exports = {
 				console.error('Database error:', err);
 				return res.render('sessions.ejs', {
 					title: 'Boardly | Sessions',
-					sessions: []
+					sessions: [],
+					game_id: req.params.game_id || null
 				});
 			}
 			res.render('sessions.ejs', {
 				title: 'Boardly | Sessions',
-				sessions: result
+				sessions: result,
+				game_id: req.params.game_id || null
 			});
 		});
 	},
@@ -70,7 +72,7 @@ module.exports = {
 			if (err) {
 				return res.status(500).send(err);
 			}
-			res.redirect('/');
+			res.redirect('/sessions/' + game_id);
 		});
 	}
 };
