@@ -1,13 +1,17 @@
 <%- include ('partials/header.ejs') %>
 
-<h2>Edit Game</h2>
-<% if (game) { %>
-	<%- include ('partials/game-form.ejs', { 
-		game: game, action: '/edit-game/' + game.id 
-	}) 
-	%>
-<% } else { %>
-	<p>Game not found.</p>
-<% } %>
+<div class="row justify-content-center">
+	<div class="col-md-6">
+        <h2>Edit Game</h2>
+        <% if (game) { %>
+            <%- include ('partials/game-form.ejs', { 
+                    game: game, action: '/edit-game/' + game.id 
+                }) 
+            %>
+        <% } else { %>
+            <p>Game not found.</p>
+        <% } %>
+    </div>
+</div>
 
 <%- include ('partials/footer.ejs') %>

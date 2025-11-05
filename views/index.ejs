@@ -20,7 +20,8 @@
 					<td><%= game.last_played_date ? new Date(game.last_played_date).toLocaleDateString() : '-' %></td>
 					<td class="text-nowrap">
 						<a href="/edit-game/<%= game.id %>" class="btn btn-sm btn-primary">Edit</a>
-					</td>
+                        <a href="/add-game-session/<%= game.id %>" class="btn btn-sm btn-success">Play</a>
+                    </td>
 				</tr>
 			<% }); %>
 		</tbody>

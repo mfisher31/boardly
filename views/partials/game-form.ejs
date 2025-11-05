@@ -1,9 +1,9 @@
 <form method="POST" action="<%= action %>">
 	<div class="form-group">
-		<label for="name">Game Name:</label>
+		<label for="name">Game:</label>
 		<input type="text" id="name" name="name" class="form-control" value="<%= game ? game.name : '' %>" required>
 	</div>
-	
-	<button type="submit" class="btn btn-primary"><%= game ? 'Update' : 'Add' %> Game</button>
+	<br>
+	<button type="submit" class="btn btn-primary"><%= game ? 'Update' : 'Add' %></button>
 	<a href="/" class="btn btn-secondary">Cancel</a>
 </form>
