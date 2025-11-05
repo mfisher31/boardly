@@ -9,6 +9,7 @@
 		<thead>
 			<tr>
 				<th>Name</th>
+				<th>Last Played</th>
 				<th style="width: 1%;">Actions</th>
 			</tr>
 		</thead>
@@ -16,6 +17,7 @@
 			<% games.forEach((game) => { %>
 				<tr>
 					<td><%= game.name %></td>
+					<td><%= game.last_played_date ? new Date(game.last_played_date).toLocaleDateString() : '-' %></td>
 					<td class="text-nowrap">
 						<a href="/edit-game/<%= game.id %>" class="btn btn-sm btn-primary">Edit</a>
 					</td>
@@ -25,6 +27,8 @@
 	</table>
 <% } %>
 
-<a href="/add-game" class="btn btn-success">Add Game</a>
+<div class="text-end">
+	<a href="/add-game" class="btn btn-success">Add Game</a>
+</div>
 
 <%- include ('partials/footer.ejs') %>
