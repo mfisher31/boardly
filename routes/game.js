@@ -1,7 +1,7 @@
 module.exports = {
 	getAdd: (_req, res) => {
 		res.render('add-game.ejs', {
-			title: 'Board Games | Add game'
+			title: 'Boardly | Add Game'
 		});
 	},
 	getEdit: (req, res) => {
@@ -12,7 +12,7 @@ module.exports = {
 				return res.status(500).send(err);
 			}
 			res.render('edit-game.ejs', {
-				title: 'Board Games | Edit game',
+				title: 'Boardly | Edit Game',
 				game: result[0]
 			});
 		});
@@ -21,7 +21,7 @@ module.exports = {
 		let name = req.body.name;
 
 		if (!name || name.trim() === '') {
-			return res.status(400).send('Game name is required');
+			return res.status(400).send('Name is required');
 		}
 
 		let query = 'INSERT INTO games (name) VALUES (?)';
@@ -38,7 +38,7 @@ module.exports = {
 
 		// Validate that name is not empty
 		if (!name || name.trim() === '') {
-			return res.status(400).send('Game name is required');
+			return res.status(400).send('Name is required');
 		}
 
 		let query = 'UPDATE games SET name = ? WHERE id = ?';
