@@ -13,6 +13,14 @@ docker compose up
 
 To stop the system, press `CTRL + C`
 
+Would Need Done for Production
+=====
+- Better Redirect handling: e.g. redirect, where it makes sense, to the referring page.
+- Proper differentiation betweeen prod, ci, and dev environments.
+- Pagination for large Game directories.
+- Performance enhancements in DB queries if needed at all.
+- Don't use stock bootstrap themeing
+
 Development
 =====
 
@@ -49,7 +57,6 @@ In the event the schema dramatically changes or otherwise needs reset, do these 
 ```sh
 # Stop the the whole system
 docker compose down
-
 # Then erase persistent DB data
 docker volume rm boardly_db_data
 ```
