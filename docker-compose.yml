@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  # Node.js application service
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=db
+      - DB_USER=app
+      - DB_PASSWORD=wonderful
+      - DB_NAME=miechallenge
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - boardly-network
+
+  # MariaDB database service
+  db:
+    image: mariadb:10.11
+    environment:
+      MARIADB_ROOT_PASSWORD: rootpassword
+      MARIADB_DATABASE: miechallenge
+      MARIADB_USER: app
+      MARIADB_PASSWORD: wonderful
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./schema.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      timeout: 20s
+      retries: 10
+    restart: unless-stopped
+    networks:
+      - boardly-network
+
+volumes:
+  db_data:
+
+networks:
+  boardly-network:
+    driver: bridge
