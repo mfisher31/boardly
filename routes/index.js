@@ -1,7 +1,6 @@
 module.exports = {
-	getHomePage: (req, res) => {
-		// TODO: Make query for games list
-		let query = "SELECT 1 AS t";
+	getHomePage: (_req, res) => {
+		let query = "SELECT * FROM games ORDER BY name";
 
 		db.query(query, (err, result) => {
 			if (err) {
@@ -9,7 +8,7 @@ module.exports = {
 			}
 			res.render('index.ejs', {
 				title: 'Board Games | View Games',
-				players: result
+				games: result
 			});
 		});
 	}
