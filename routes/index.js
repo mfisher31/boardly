@@ -2,17 +2,13 @@ module.exports = {
 	getHomePage: (_req, res) => {
         let query = `
             SELECT 
-                g.*,
-                gs.id as session_id,
-                gs.session_date as last_played_date,
-                gs.notes as last_session_notes
+                g.id,
+                g.name,
+                g.created_at,
+                MAX(gs.session_date) as last_played_date
             FROM games g
-            LEFT JOIN (
-                SELECT game_id, MAX(session_date) as max_date
-                FROM game_sessions
-                GROUP BY game_id
-            ) latest ON g.id = latest.game_id
-            LEFT JOIN game_sessions gs ON gs.game_id = latest.game_id AND gs.session_date = latest.max_date
+            LEFT JOIN game_sessions gs ON g.id = gs.game_id
+            GROUP BY g.id, g.name, g.created_at
             ORDER BY g.created_at ASC
         `;
 
