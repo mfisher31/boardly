@@ -48,5 +48,16 @@ module.exports = {
             }
             res.redirect('/');
         });
+    },
+    postDelete: (req, res) => {
+        let game_id = req.params.id;
+        
+        let query = 'DELETE FROM games WHERE id = ?';
+        db.query(query, [game_id], (err, _result) => {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            res.redirect('/');
+        });
     }
 };

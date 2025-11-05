@@ -49,14 +49,18 @@ Object.assign(app.locals, require('./helpers/format'));
 // Routes
 app.get('/', getHomePage);
 app.get('/sessions/:game_id?', game_session.getSessions);
+
 app.get('/add-game', game.getAdd);
 app.post('/add-game', game.postAdd);
 app.get('/edit-game/:id', game.getEdit);
 app.post('/edit-game/:id', game.postEdit);
+app.post('/delete-game/:id', game.postDelete);
+
 app.get('/add-game-session/:id?', game_session.getAdd);
 app.post('/add-game-session', game_session.postAdd);
 app.get('/edit-game-session/:id', game_session.getEdit);
 app.post('/edit-game-session/:id', game_session.postEdit);
+app.post('/delete-game-session/:id', game_session.postDelete);
 
 app.listen(port, () => {
     console.log(`Server running on port: ${port}`);

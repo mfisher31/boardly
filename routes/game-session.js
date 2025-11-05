@@ -124,5 +124,17 @@ module.exports = {
             }
             res.redirect('/sessions/' + game_id);
         });
+    },
+    postDelete: (req, res) => {
+        let session_id = req.params.id;
+        let game_id = req.body.game_id;
+        
+        let query = 'DELETE FROM game_sessions WHERE id = ?';
+        db.query(query, [session_id], (err, _result) => {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            res.redirect('/sessions/' + game_id);
+        });
     }
 };
