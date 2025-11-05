@@ -1,5 +1,8 @@
 <%- include ('partials/header.ejs') %>
 
-TODO: Make a form for adding a game
+<div class="container">
+	<h1>Add Game</h1>
+	<%- include ('partials/game-form.ejs', { game: null, action: '/add-game' }) %>
+</div>
 
 <%- include ('partials/footer.ejs') %>

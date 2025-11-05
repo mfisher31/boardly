@@ -1,5 +1,5 @@
 module.exports = {
-	getAdd: (req, res) => {
+	getAdd: (_req, res) => {
 		res.render('add-game.ejs', {
 			title: 'Board Games | Add game'
 		});
@@ -18,10 +18,19 @@ module.exports = {
 		});
 	},
 	postAdd: (req, res) => {
-		// TODO db.query to insert game
+		let name = req.body.name;
 
-		// If all went well, go back to main screen
-		res.redirect('/');
+		if (!name || name.trim() === '') {
+			return res.status(400).send('Game name is required');
+		}
+
+		let query = 'INSERT INTO games (name) VALUES (?)';
+		db.query(query, [name.trim()], (err, _result) => {
+			if (err) {
+				return res.status(500).send(err);
+			}
+			res.redirect('/');
+		});
 	},
 	postEdit: (req, res) => {
 		let id = req.params.id;
@@ -33,7 +42,7 @@ module.exports = {
 		}
 
 		let query = 'UPDATE games SET name = ? WHERE id = ?';
-		db.query(query, [name.trim(), id], (err, result) => {
+		db.query(query, [name.trim(), id], (err, _result) => {
 			if (err) {
 				return res.status(500).send(err);
 			}
