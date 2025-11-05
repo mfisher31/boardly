@@ -5,8 +5,16 @@ module.exports = {
 		});
 	},
 	getEdit: (req, res) => {
-		res.render('edit-game.ejs', {
-			title: 'Board Games | Edit game'
+		let id = req.params.id;		
+		let query = 'SELECT * FROM games WHERE id = ?';
+		db.query(query, [id], (err, result) => {
+			if (err) {
+				return res.status(500).send(err);
+			}
+			res.render('edit-game.ejs', {
+				title: 'Board Games | Edit game',
+				game: result[0]
+			});
 		});
 	},
 	postAdd: (req, res) => {
@@ -17,9 +25,19 @@ module.exports = {
 	},
 	postEdit: (req, res) => {
 		let id = req.params.id;
+		let name = req.body.name;
 
-		// TODO db.query to update game
+		// Validate that name is not empty
+		if (!name || name.trim() === '') {
+			return res.status(400).send('Game name is required');
+		}
 
-		res.redirect('/');
+		let query = 'UPDATE games SET name = ? WHERE id = ?';
+		db.query(query, [name.trim(), id], (err, result) => {
+			if (err) {
+				return res.status(500).send(err);
+			}
+			res.redirect('/');
+		});
 	}
 };
