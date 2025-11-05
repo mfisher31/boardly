@@ -28,8 +28,8 @@
                     <td><a href="/sessions/<%= game.id %>"><%= game.name %></a></td>
                     <td><%= game.last_played_date ? new Date(game.last_played_date).toLocaleDateString() : '-' %></td>
                     <td class="text-nowrap">
-                        <a href="/edit-game/<%= game.id %>" class="btn btn-sm btn-primary">Edit</a>
                         <a href="/add-game-session/<%= game.id %>" class="btn btn-sm btn-success">Play</a>
+                        <a href="/edit-game/<%= game.id %>" class="btn btn-sm btn-primary">Edit</a>
                         <form action="/delete-game/<%= game.id %>" method="POST" style="display: inline;">
                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this game?')">Delete</button>
                         </form>

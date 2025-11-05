@@ -5,9 +5,10 @@ module.exports = {
      * @param {number} [length=30] - Maximum length before truncation
      * @returns {string} The truncated text with '...' appended, or '-' if text is falsy
      */
-    truncate: (text, length = 30) => {
-        if (!text || typeof text != 'string') 
+    formatDescription: (text, length = 30) => {
+        if (!text || typeof text != 'string' || text.trim().length <= 0) 
             return '-';
+
         text = text.trim()
 
         const newlineIndex = text.indexOf('\n');
