@@ -12,8 +12,8 @@ const { getHomePage} = require('./routes/index');
 const game = require('./routes/game');
 const game_session = require('./routes/game_session');
 
-// Read port from the envronment or default to 3000
-const port = process.env.DB_HOST || 3000;
+// Read port from the environment or default to 3000
+const port = process.env.PORT || 3000;
 
 // Read db connection details from the environment or use defaults
 const db = mysql.createConnection({
