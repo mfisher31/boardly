@@ -24,10 +24,10 @@ const db = mysql.createConnection({
 });
 
 db.connect((err) => {
-	if (err) {
-		throw err;
-	}
-	console.log('Connected to database');
+    if (err) {
+        throw err;
+    }
+    console.log('Connected to database');
 });
 
 global.db = db;
@@ -55,5 +55,5 @@ app.get('/add-game-session/:id?', game_session.getAdd);
 app.post('/add-game-session', game_session.postAdd);
 
 app.listen(port, () => {
-	console.log(`Server running on port: ${port}`);
+    console.log(`Server running on port: ${port}`);
 });

@@ -11,28 +11,28 @@
 </div>
 
 <% if (sessions.length === 0) { %>
-	<p>No game sessions found.</a></p>
+    <p>No game sessions found.</a></p>
 <% } else { %>
-	<table class="table table-striped table-hover table-bordered">
-		<thead>
-			<tr>
-				<th>Game</th>
-				<th>Date</th>
-				<th>Players</th>
-				<th>Notes</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% sessions.forEach((session) => { %>
-				<tr>
-					<td><%= session.game_name %></td>
-					<td><%= new Date(session.session_date).toLocaleDateString() %></td>
-					<td><%= session.players_count %></td>
-					<td><%= session.notes || '-' %></td>
-				</tr>
-			<% }); %>
-		</tbody>
-	</table>
+    <table class="table table-striped table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Game</th>
+                <th>Date</th>
+                <th>Players</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% sessions.forEach((session) => { %>
+                <tr>
+                    <td><%= session.game_name %></td>
+                    <td><%= new Date(session.session_date).toLocaleDateString() %></td>
+                    <td><%= session.players_count %></td>
+                    <td><%= session.notes || '-' %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
 <% } %>
 
 <%- include ('partials/footer.ejs') %>
