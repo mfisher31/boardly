@@ -46,6 +46,7 @@ app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/
 
 // Routes
 app.get('/', getHomePage);
+app.get('/sessions/:game_id?', game_session.getSessions);
 app.get('/add-game', game.getAdd);
 app.post('/add-game', game.postAdd);
 app.get('/edit-game/:id', game.getEdit);

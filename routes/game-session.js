@@ -1,4 +1,40 @@
 module.exports = {
+	getSessions: (req, res) => {
+		// Fetch all game sessions with game names
+		let query = `
+			SELECT 
+				gs.id,
+				gs.game_id,
+				gs.session_date,
+				gs.players_count,
+				gs.notes,
+				g.name as game_name
+			FROM game_sessions gs
+			JOIN games g ON gs.game_id = g.id
+		`;
+		let params = [];
+		
+		if (req.params.game_id) {
+			query += ' WHERE gs.game_id = ?';
+			params.push(parseInt(req.params.game_id));
+		}
+		
+		query += ' ORDER BY gs.session_date DESC';
+		
+		db.query(query, params, (err, result) => {
+			if (err) {
+				console.error('Database error:', err);
+				return res.render('sessions.ejs', {
+					title: 'Boardly | Sessions',
+					sessions: []
+				});
+			}
+			res.render('sessions.ejs', {
+				title: 'Boardly | Sessions',
+				sessions: result
+			});
+		});
+	},
 	getAdd: (req, res) => {
 		// Fetch all games to populate the dropdown
 		let query = 'SELECT id, name FROM games ORDER BY name ASC';
