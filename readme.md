@@ -3,6 +3,16 @@ Boardly: A Board Game Directory and Tracker
 
 Tracks what board games you have, as well as all the times they have been played.
 
+Running
+=====
+The application can be run locally with docker compose all in one shot.  The following will spin up the application container as well as the database container.
+
+```sh
+docker compose up
+```
+
+To stop the system, press `CTRL + C`
+
 Development
 =====
 
