@@ -1,0 +1,13 @@
+.boardly-bottom-8px {
+    margin-bottom: 8px;
+}
+
+.boardly-logo a {
+    color: #0a0a0a;
+    text-decoration: none;
+}
+
+.boardly-logo a:hover {
+    color: #333333;
+    text-decoration: none;
+}
