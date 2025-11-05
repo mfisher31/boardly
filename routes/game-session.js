@@ -77,25 +77,25 @@ module.exports = {
     },
     getEdit: (req, res) => {
         let session_id = req.params.id;
-        let sessionQuery = 'SELECT * FROM game_sessions WHERE id = ?';
-        let gamesQuery = 'SELECT id, name FROM games ORDER BY name ASC';
+        let session_query = 'SELECT * FROM game_sessions WHERE id = ?';
+        let games_query = 'SELECT id, name FROM games ORDER BY name ASC';
         
-        db.query(sessionQuery, [session_id], (err, sessionResult) => {
+        db.query(session_query, [session_id], (err, session_result) => {
             if (err) {
                 return res.status(500).send(err);
             }
-            if (sessionResult.length === 0) {
+            if (session_result.length === 0) {
                 return res.status(404).send('Session not found');
             }
             
-            db.query(gamesQuery, (err, gamesResult) => {
+            db.query(games_query, (err, games_result) => {
                 if (err) {
                     return res.status(500).send(err);
                 }
                 res.render('edit-game-session.ejs', {
                     title: 'Boardly | Edit Session',
-                    session: sessionResult[0],
-                    games: gamesResult
+                    session: session_result[0],
+                    games: games_result
                 });
             });
         });

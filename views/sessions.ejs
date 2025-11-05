@@ -29,7 +29,7 @@
                     <td><%= session.game_name %></td>
                     <td><%= new Date(session.session_date).toLocaleDateString() %></td>
                     <td><%= session.players_count %></td>
-                    <td><%= session.notes || '-' %></td>
+                    <td><%= truncate(session.notes) || '-' %></td>
                     <td class="text-nowrap">
                         <a href="/edit-game-session/<%= session.id %>" class="btn btn-sm btn-primary">Edit</a>
                     </td>

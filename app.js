@@ -44,6 +44,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
 app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')));
 
+Object.assign(app.locals, require('./helpers/format'));
+
 // Routes
 app.get('/', getHomePage);
 app.get('/sessions/:game_id?', game_session.getSessions);
