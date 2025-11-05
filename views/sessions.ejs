@@ -20,6 +20,7 @@
                 <th>Date</th>
                 <th>Players</th>
                 <th>Notes</th>
+                <th style="width: 1%;">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +30,9 @@
                     <td><%= new Date(session.session_date).toLocaleDateString() %></td>
                     <td><%= session.players_count %></td>
                     <td><%= session.notes || '-' %></td>
+                    <td class="text-nowrap">
+                        <a href="/edit-game-session/<%= session.id %>" class="btn btn-sm btn-primary">Edit</a>
+                    </td>
                 </tr>
             <% }); %>
         </tbody>

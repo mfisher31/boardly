@@ -74,5 +74,55 @@ module.exports = {
             }
             res.redirect('/sessions/' + game_id);
         });
+    },
+    getEdit: (req, res) => {
+        let session_id = req.params.id;
+        let sessionQuery = 'SELECT * FROM game_sessions WHERE id = ?';
+        let gamesQuery = 'SELECT id, name FROM games ORDER BY name ASC';
+        
+        db.query(sessionQuery, [session_id], (err, sessionResult) => {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            if (sessionResult.length === 0) {
+                return res.status(404).send('Session not found');
+            }
+            
+            db.query(gamesQuery, (err, gamesResult) => {
+                if (err) {
+                    return res.status(500).send(err);
+                }
+                res.render('edit-game-session.ejs', {
+                    title: 'Boardly | Edit Session',
+                    session: sessionResult[0],
+                    games: gamesResult
+                });
+            });
+        });
+    },
+    postEdit: (req, res) => {
+        let session_id = req.params.id;
+        let game_id = req.body.game_id;
+        let session_date = req.body.session_date;
+        let players_count = req.body.players_count;
+        let notes = req.body.notes;
+
+        // Validate required fields
+        if (!game_id || !session_date || !players_count) {
+            return res.status(400).send('Game, session date, and number of players are required');
+        }
+
+        // Validate players_count is a positive number
+        if (isNaN(players_count) || parseInt(players_count) < 1) {
+            return res.status(400).send('Number of players must be at least 1');
+        }
+
+        let query = 'UPDATE game_sessions SET game_id = ?, session_date = ?, players_count = ?, notes = ? WHERE id = ?';
+        db.query(query, [game_id, session_date, parseInt(players_count), notes || null, session_id], (err, _result) => {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            res.redirect('/sessions/' + game_id);
+        });
     }
 };
