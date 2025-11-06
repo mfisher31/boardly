@@ -20,6 +20,7 @@ Would Need Done for Production
 - Pagination for large Game directories.
 - Performance enhancements in DB queries if needed at all.
 - Don't use stock bootstrap themeing
+- Produce error messages somehow instead of 500 error responses
 
 Development
 =====
