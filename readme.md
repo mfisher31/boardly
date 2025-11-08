@@ -1,7 +1,7 @@
 Boardly: A Board Game Directory and Tracker
 =====
 
-Tracks what board games you have, as well as all the times they have been played.
+Tracks what board games you have, as well as all the times they have been played.  Take a look at these [screenshots](./screenshots/readme.md).
 
 Running
 =====
