@@ -41,7 +41,7 @@ Before anything else, run `npm install` to get all dependencies in place.
 
 ## Running Locally
 
-For development, the database should firt be started with docker compose
+For development, the database should first be started with docker compose
 
 ```sh
 docker compose up db
