@@ -11,6 +11,8 @@ The application can be run locally with docker compose all in one shot.  The fol
 docker compose up
 ```
 
+After this the app will be available in your web browser at http://localhost:3000/
+
 To stop the system, press `CTRL + C`
 
 Would Need Done for Production
